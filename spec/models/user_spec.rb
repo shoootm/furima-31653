@@ -5,38 +5,9 @@ describe User do
   end
 
   describe 'ユーザー新規登録' do
-    context '新規登録がうまくいくとき' do
-      it "nickname、email、passwordとpassword_confirmation、first_name、family_name、first_name_kana、family_name_kana、birthが存在すれば登録できる" do
-
-      end
-      it "emailに@が含まれていればで登録できる" do
-        @user.email = "sample@sample.com"
-        expect(@user).to be_valid
-      end
-      it "passwordが6文字以上であれば登録できる" do
-        @user.password = "123qaa"
-        @user.password_confirmation = "123qaa"
-        expect(@user).to be_valid
-      end
-      it "passwordが半角英数字混合であれば登録できる" do
-        @user.password = "111qqq"
-        @user.password_confirmation = "111qqq"
-        expect(@user).to be_valid
-      end
-      it "passwordとpassword_confirmationが同じであれば登録できる" do
-        @user.password = "111qqq"
-        @user.password_confirmation = "111qqq"
-        expect(@user).to be_valid
-      end
-      it "first_nameとfamily_nameが全角（漢字・ひらがな・カタカナ）であれば登録できる" do
-        @user.first_name = "佐藤"
-        @user.family_name = "太朗"
-        expect(@user).to be_valid
-      end
-      it "first_name_kanaとfamily_name_kanaが全角（カタカナ）であれば登録できる" do
-        @user.first_name_kana = "サトウ"
-        @user.family_name_kana = "タロウ"
-        expect(@user).to be_valid
+    context '内容に問題ない場合' do
+      it "全て正常" do
+        expect(@user.valid?).to eq true
       end
     end
 
@@ -50,6 +21,11 @@ describe User do
         @user.email = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it "emailに@が存在していなければ登録できない" do
+        @user.email = "aaaaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it "重複したemailが存在する場合登録できない" do
         @user.save
