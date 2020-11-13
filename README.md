@@ -28,7 +28,7 @@ has_many:comments
 | ------------------- | ---------- | ------------------------------ |
 | name                | string     | null: false                    |
 | explanation         | text       | null: false                    |
-| price               | integer    | null: false                    |
+| price               | string     | null: false                    |
 | category_id         | integer    | null: false                    |
 | condition_id        | integer    | null: false                    |
 | shipping_charges_id | integer    | null: false                    |
