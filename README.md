@@ -28,10 +28,10 @@ has_many:comments
 | ------------------- | ---------- | ------------------------------ |
 | name                | string     | null: false                    |
 | explanation         | text       | null: false                    |
-| price               | integer    | null: false                    |
+| price               | string     | null: false                    |
 | category_id         | integer    | null: false                    |
 | condition_id        | integer    | null: false                    |
-| shipping_charges_id | integer    | null: false                    |
+| shipping_charge_id  | integer    | null: false                    |
 | area_id             | integer    | null: false                    |
 | shipping_date_id    | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
@@ -43,7 +43,7 @@ has_many:comments
 has_one:purchase
 belongs_to_active_hash :category
 belongs_to_active_hash :condition
-belongs_to_active_hash :shipping_charges
+belongs_to_active_hash :shipping_charge
 belongs_to_active_hash :area
 belongs_to_active_hash :shipping_date
 
