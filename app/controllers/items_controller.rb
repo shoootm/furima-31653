@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
     else
       render :show
     end
-
   end
 
   private
