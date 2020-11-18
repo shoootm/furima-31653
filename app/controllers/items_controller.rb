@@ -20,10 +20,16 @@ class ItemsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
-    redirect_to action: :index unless current_user.id == @item.user_id
+    redirect_to action: :index if current_user.id != @item.user_id || @item.purchase.present?
+    unless user_signed_in?
+      if @item.purchase.present?
+      redirect_to new_user_session_path
+      end
+    end
   end
 
   def update
