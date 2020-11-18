@@ -25,4 +25,11 @@ class Item < ApplicationRecord
     validates :area_id
     validates :shipping_date_id
   end
+  def self.search(search)
+    if search != ""
+      Tweet.where('name LIKE(?)', "%#{search}%")
+    else
+      Tweet.all
+    end
+  end
 end
