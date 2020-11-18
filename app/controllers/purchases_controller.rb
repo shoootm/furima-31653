@@ -21,9 +21,11 @@ class PurchasesController < ApplicationController
   def purchase_params
     params.require(:purchase_form).permit(:postal_code, :area_id, :municipalities, :address, :building, :phone_number).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
   end
+
   def set_item
     @item = Item.find(params[:item_id])
   end
+
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
