@@ -78,7 +78,7 @@
   <div class="comment-box">
     <%= form_with(url:item_comments_path(@item.id)) do |f| %>
     <form>
-      <%= f.text_field :text, class:"comment-text", id:"comment-text",style:"line-height:1px; height:100px;"%>
+      <%= f.text_field :text, class:"comment-text", id:"comment-text"%>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
