@@ -74,10 +74,11 @@
       </div>
     </div>
   </div>
-
+  <% if user_signed_in? %>
   <div class="comment-box">
+    <%= form_with(url:item_comments_path(@item.id)) do |f| %>
     <form>
-      <textarea class="comment-text"></textarea>
+      <%= f.text_field :text, class:"comment-text", id:"comment-text",style:"line-height:1px; height:100px;"%>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
@@ -85,9 +86,20 @@
       </p>
       <button type="submit" class="comment-btn">
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
+        <%= f.submit "コメントする", class:"btn"%>
       </button>
     </form>
+    <% end %>
+  </div>
+  <% end %>
+  <div id="comments" class="comments" >
+    <% @comments.reverse_each do |comment| %>
+    <p class="comment-list" >
+      <%="ユーザー名：#{comment.user[:nickname]}"%>
+      <br>
+      <%="コメント：#{comment.text}" %>
+    </p>
+    <% end %>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">

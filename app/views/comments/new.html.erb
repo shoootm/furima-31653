@@ -1,0 +1,10 @@
+<h3>mini_talk_app</h3>
+<%= form_with model: @comment do |f| %>
+  <%= f.text_field :text %>
+  <%= f.submit "出品する" ,class:"comment-btn" %>
+<% end %>
+<div id='messages'>
+  <% @comments.reverse_each do |comment| %>
+    <p><%= comment.text %></p>
+  <% end %>
+</div>
