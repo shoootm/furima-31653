@@ -21,12 +21,12 @@ RSpec.describe Comment, type: :model do
       it 'userが紐づいていないとコメントできない' do
         @comment.user = nil
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("User must exist")
+        expect(@comment.errors.full_messages).to include('User must exist')
       end
       it 'itemが結びついていないとコメントできない' do
         @comment.item = nil
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("Item must exist")
+        expect(@comment.errors.full_messages).to include('Item must exist')
       end
     end
   end
