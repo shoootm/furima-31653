@@ -94,11 +94,17 @@
   <% end %>
   <div id="comments" class="comments" >
     <% @comments.reverse_each do |comment| %>
-    <p class="comment-list" >
-      <%="ユーザー名：#{comment.user[:nickname]}"%>
-      <br>
-      <%="コメント：#{comment.text}" %>
-    </p>
+    <div class="comment-list" >
+      <div class="comment-list-user"><%="ユーザー名：#{comment.user[:nickname]}"%></div>
+      <div class="comment-list-text">
+        <div><%="コメント：#{comment.text}" %></div>
+        <% if user_signed_in? %>
+          <% if current_user.id == comment.user_id %>
+          <div class="comment-destroy" id="comment-destroy"><%=link_to "コメントを削除する", item_comment_path(comment.item_id,comment.id), method: :delete %></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
     <% end %>
   </div>
   <div class="links">

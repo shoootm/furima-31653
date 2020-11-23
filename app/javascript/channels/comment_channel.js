@@ -11,10 +11,16 @@ consumer.subscriptions.create("CommentChannel", {
   received(data) {
     //const comment = XHR.response.comment;
     //const user = XHR.response.user;
-    const html = `<p class="comment-list">ユーザー名：${data.user.nickname}<br>コメント：${data.content.text}</p>`;
+    const commentDestroy = document.getElementById('comment-destroy');
+    const html =
+      `<div class="comment-list" >
+      <div class="comment-list-user">ユーザー名：${data.user.nickname}</div>
+      <div class="comment-list-text">
+        <div>コメント：${data.content.text}</div>
+      </div>
+    </div>`
     const comments = document.getElementById('comments');
     const newComment = document.getElementById('comment-text');
-    //const commentlist = document.getElementById('comment-list');
     comments.insertAdjacentHTML('afterbegin', html);
     newComment.value = '';
   }
